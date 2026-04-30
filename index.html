@@ -538,7 +538,6 @@
         <span class="share-line-name">— ${escapeHtml(name)}</span><br><br>
         <span class="share-line-tags">#ZionByTeni #TeniXOlamide #ZionSuperFan</span><br><br>
         <span class="share-line-stream">🎧 Stream: https://vyd.co/TeniZion</span><br><br>
-        <span class="share-line-stream">🃏 Make your own: https://zion-fan-card.vercel.app</span><br><br>
         <span class="share-line-credit">Fan card by @mojeebeth · @TeniEntertainer × @olamide_YBNL</span>
       `;
     }
@@ -558,8 +557,6 @@
         `#ZionByTeni #TeniXOlamide #ZionSuperFan`,
         ``,
         `🎧 Stream: https://vyd.co/TeniZion`,
-        ``,
-        `🃏 Make your own: https://zion-fan-card.vercel.app`,
         ``,
         `Fan card by @mojeebeth · @TeniEntertainer × @olamide_YBNL`
       ].join('\n');
@@ -584,7 +581,7 @@
     function tweetCard() {
       const name = currentName || 'A True Believer';
       const message = currentMessage || 'Zion hits different every time 🙏';
-      const tweet = `🎵 ${message}\n\n— ${name}\n\n#ZionByTeni #TeniXOlamide #ZionSuperFan\n\n🎧 Stream: https://vyd.co/TeniZion\n\n🃏 Make your own card: https://zion-fan-card.vercel.app\n\nFan card by @mojeebeth · @TeniEntertainer × @olamide_YBNL`;
+      const tweet = `🎵 ${message}\n\n— ${name}\n\n#ZionByTeni #TeniXOlamide #ZionSuperFan\n\n🎧 Stream: https://vyd.co/TeniZion\n\nFan card by @mojeebeth · @TeniEntertainer × @olamide_YBNL`;
       trackEvent('tweet_card');
       window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`, '_blank');
     }
