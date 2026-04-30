@@ -6,8 +6,11 @@
   <title>ZION – Teni x Olamide | Fan Card</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 
-  <!-- ─── UMAMI ANALYTICS ─── -->
+  <!-- UMAMI ANALYTICS -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="eb52f55f-530d-4b50-823b-60ad55ad03d6"></script>
+
+  <!-- html2canvas for card download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,11 +38,7 @@
       gap: 32px;
     }
 
-    /* ─── PAGE HEADER ─── */
-    .page-header {
-      text-align: center;
-      animation: fadeUp 0.8s ease both;
-    }
+    .page-header { text-align: center; animation: fadeUp 0.8s ease both; }
     .page-header h1 {
       font-family: 'Syne', sans-serif;
       font-size: clamp(2rem, 8vw, 3.5rem);
@@ -57,7 +56,6 @@
       text-transform: uppercase;
     }
 
-    /* ─── FORM ─── */
     .form-wrap {
       display: flex;
       flex-direction: column;
@@ -109,7 +107,6 @@
     .generate-btn:hover { background: var(--red-soft); }
     .generate-btn:active { transform: scale(0.98); }
 
-    /* ─── CARD PREVIEW ─── */
     .card-section {
       display: flex;
       flex-direction: column;
@@ -122,7 +119,6 @@
     }
     .card-section.visible { opacity: 1; transform: translateY(0); }
 
-    /* THE CARD */
     #fan-card {
       width: var(--card-w);
       height: var(--card-h);
@@ -177,12 +173,7 @@
       user-select: none;
       line-height: 1;
     }
-    .card-artists {
-      position: absolute;
-      top: 28px;
-      right: 28px;
-      text-align: right;
-    }
+    .card-artists { position: absolute; top: 28px; right: 28px; text-align: right; }
     .card-artists .song-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 2rem;
@@ -256,11 +247,7 @@
       margin-bottom: 16px;
       opacity: 0.5;
     }
-    .card-footer {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-    }
+    .card-footer { display: flex; align-items: flex-end; justify-content: space-between; }
     .card-hashtags { display: flex; flex-direction: column; gap: 2px; }
     .card-hashtags span {
       font-size: 0.6rem;
@@ -269,11 +256,7 @@
       opacity: 0.8;
     }
     .card-meta { text-align: right; }
-    .card-builder {
-      font-size: 0.58rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-    }
+    .card-builder { font-size: 0.58rem; color: var(--muted); letter-spacing: 0.1em; }
     .card-builder strong { color: var(--gold); }
     .card-superfan {
       font-size: 0.6rem;
@@ -283,14 +266,7 @@
       margin-top: 2px;
     }
 
-    /* ─── STREAM LINKS ─── */
-    .stream-section {
-      width: 100%;
-      max-width: var(--card-w);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .stream-section { width: 100%; max-width: var(--card-w); display: flex; flex-direction: column; gap: 8px; }
     .stream-label {
       font-size: 0.6rem;
       letter-spacing: 0.18em;
@@ -320,16 +296,7 @@
     .stream-link:hover { border-color: var(--gold); color: var(--gold); }
     .stream-link svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-    /* ─── SHARE AREA ─── */
-    .share-area {
-      width: 100%;
-      max-width: var(--card-w);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    /* ── FIXED: share text box — clear, readable, high contrast ── */
+    .share-area { width: 100%; max-width: var(--card-w); display: flex; flex-direction: column; gap: 8px; }
     .share-copy-box {
       background: #0f0d0f;
       border: 1px solid #3a2525;
@@ -337,33 +304,19 @@
       padding: 16px;
       font-family: 'DM Mono', monospace;
       font-size: 0.8rem;
-      font-weight: 400;
       color: #d4c9b8;
       line-height: 1.8;
       word-break: break-word;
       letter-spacing: 0.01em;
       -webkit-font-smoothing: antialiased;
     }
-    .share-copy-box .share-line-main {
-      color: var(--bone);
-      font-size: 0.82rem;
-    }
-    .share-copy-box .share-line-name {
-      color: var(--gold);
-      font-weight: 500;
-    }
-    .share-copy-box .share-line-tags {
-      color: var(--red-soft);
-    }
-    .share-copy-box .share-line-stream {
-      color: #7fc4a0;
-    }
-    .share-copy-box .share-line-credit {
-      color: var(--muted);
-      font-size: 0.72rem;
-    }
+    .share-line-main { color: var(--bone); font-size: 0.82rem; }
+    .share-line-name { color: var(--gold); font-weight: 500; }
+    .share-line-tags { color: var(--red-soft); }
+    .share-line-stream { color: #7fc4a0; }
+    .share-line-credit { color: var(--muted); font-size: 0.72rem; }
 
-    .btn-row { display: flex; gap: 8px; }
+    .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
     .share-btn {
       flex: 1;
       padding: 12px;
@@ -377,8 +330,10 @@
       cursor: pointer;
       transition: all 0.2s;
       text-transform: uppercase;
+      min-width: 100px;
     }
     .share-btn:hover { border-color: var(--red); color: var(--red); }
+    .share-btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .share-btn.primary {
       background: var(--red);
       border-color: var(--red);
@@ -387,9 +342,10 @@
       font-weight: 700;
     }
     .share-btn.primary:hover { background: var(--red-soft); border-color: var(--red-soft); }
+    .share-btn.gold { border-color: var(--gold); color: var(--gold); }
+    .share-btn.gold:hover { background: var(--gold); color: var(--void); }
     .share-btn.copied { border-color: var(--gold); color: var(--gold); }
 
-    /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
@@ -402,6 +358,7 @@
     @media (max-width: 520px) {
       #fan-card { padding: 20px; }
       .card-artists .song-title { font-size: 1.5rem; }
+      .btn-row { flex-direction: column; }
     }
   </style>
 </head>
@@ -424,25 +381,21 @@
     <button class="generate-btn" onclick="generateCard()">Generate My Fan Card →</button>
   </div>
 
-  <!-- CARD PREVIEW -->
   <div class="card-section" id="card-section">
 
     <div id="fan-card">
       <div class="card-grain"></div>
       <div class="card-top-bar"></div>
       <div class="card-bg-text">ZION</div>
-
       <div class="card-badge">
         <div class="badge-dot"></div>
         <span class="badge-label">Super Fan</span>
       </div>
-
       <div class="card-artists">
         <div class="song-title">Zion</div>
         <div class="featuring">featuring</div>
         <div class="names">Teni × Olamide Baddo</div>
       </div>
-
       <div class="card-bottom">
         <div class="card-fan-name" id="card-name">YOUR NAME</div>
         <div class="card-fan-message" id="card-message">This song is a whole sanctuary 🔥</div>
@@ -491,6 +444,7 @@
       </div>
       <div class="btn-row">
         <button class="share-btn" id="copy-btn" onclick="copyText()">Copy Text</button>
+        <button class="share-btn gold" id="download-btn" onclick="downloadCard()">⬇ Save Card</button>
         <button class="share-btn primary" onclick="tweetCard()">Post on X →</button>
       </div>
     </div>
@@ -517,15 +471,12 @@
       document.getElementById('card-name').textContent = name;
       document.getElementById('card-message').textContent = message;
 
-      // Show stream links
       const streamSection = document.getElementById('stream-section');
       streamSection.style.display = 'flex';
       streamSection.style.flexDirection = 'column';
 
-      // Render share text with color-coded spans
       document.getElementById('share-text-box').innerHTML = buildShareHTML(name, message);
 
-      // Show card
       const section = document.getElementById('card-section');
       section.classList.add('visible');
       section.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -538,12 +489,13 @@
         <span class="share-line-name">— ${escapeHtml(name)}</span><br><br>
         <span class="share-line-tags">#ZionByTeni #TeniXOlamide #ZionSuperFan</span><br><br>
         <span class="share-line-stream">🎧 Stream: https://vyd.co/TeniZion</span><br><br>
+        <span class="share-line-stream">🃏 Make your own: https://zion-fan-card.vercel.app</span><br><br>
         <span class="share-line-credit">Fan card by @mojeebeth · @TeniEntertainer × @olamide_YBNL</span>
       `;
     }
 
     function escapeHtml(str) {
-      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
     function buildShareText(name, message) {
@@ -557,6 +509,8 @@
         `#ZionByTeni #TeniXOlamide #ZionSuperFan`,
         ``,
         `🎧 Stream: https://vyd.co/TeniZion`,
+        ``,
+        `🃏 Make your own: https://zion-fan-card.vercel.app`,
         ``,
         `Fan card by @mojeebeth · @TeniEntertainer × @olamide_YBNL`
       ].join('\n');
@@ -578,10 +532,36 @@
       });
     }
 
+    function downloadCard() {
+      const btn = document.getElementById('download-btn');
+      btn.textContent = 'Saving...';
+      btn.disabled = true;
+
+      const card = document.getElementById('fan-card');
+      html2canvas(card, {
+        scale: 2,
+        backgroundColor: '#060406',
+        useCORS: true,
+        logging: false
+      }).then(canvas => {
+        const link = document.createElement('a');
+        const safeName = (currentName || 'zion-fan').replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
+        link.download = `zion-fan-card-${safeName}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        trackEvent('download_card');
+        btn.textContent = '⬇ Save Card';
+        btn.disabled = false;
+      }).catch(() => {
+        btn.textContent = '⬇ Save Card';
+        btn.disabled = false;
+      });
+    }
+
     function tweetCard() {
       const name = currentName || 'A True Believer';
       const message = currentMessage || 'Zion hits different every time 🙏';
-      const tweet = `🎵 ${message}\n\n— ${name}\n\n#ZionByTeni #TeniXOlamide #ZionSuperFan\n\n🎧 Stream: https://vyd.co/TeniZion\n\nFan card by @mojeebeth · @TeniEntertainer × @olamide_YBNL`;
+      const tweet = `🎵 ${message}\n\n— ${name}\n\n#ZionByTeni #TeniXOlamide #ZionSuperFan\n\n🎧 Stream: https://vyd.co/TeniZion\n\n🃏 Make your own: https://zion-fan-card.vercel.app\n\nFan card by @mojeebeth · @TeniEntertainer × @olamide_YBNL`;
       trackEvent('tweet_card');
       window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`, '_blank');
     }
