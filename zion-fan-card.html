@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZION – Teni x Olamide | Fan Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <!-- ─── UMAMI ANALYTICS ─── -->
+  <!-- Replace YOUR_UMAMI_WEBSITE_ID with your actual ID from umami.is after deploying -->
+  <!-- <script defer src="https://cloud.umami.is/script.js" data-website-id="YOUR_UMAMI_WEBSITE_ID"></script> -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --void: #060406;
+      --red: #C8272D;
+      --red-soft: #e84040;
+      --gold: #D4A840;
+      --bone: #F0EAD6;
+      --muted: #8a7a6a;
+      --card-w: 480px;
+      --card-h: 600px;
+    }
+
+    body {
+      background: var(--void);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      padding: 24px 16px 48px;
+      gap: 32px;
+    }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      text-align: center;
+      animation: fadeUp 0.8s ease both;
+    }
+    .page-header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      font-weight: 800;
+      color: var(--bone);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .page-header h1 span {
+      color: var(--red);
+    }
+    .page-header p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ─── FORM ─── */
+    .form-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 400px;
+      animation: fadeUp 0.9s ease both;
+      animation-delay: 0.1s;
+    }
+    .form-wrap label {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+      display: block;
+    }
+    .form-wrap input, .form-wrap textarea {
+      width: 100%;
+      background: #0f0d0f;
+      border: 1px solid #2a1f1f;
+      color: var(--bone);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      padding: 12px 14px;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-wrap input:focus, .form-wrap textarea:focus {
+      border-color: var(--red);
+    }
+    .form-wrap textarea {
+      resize: none;
+      height: 80px;
+    }
+    .form-wrap input::placeholder, .form-wrap textarea::placeholder {
+      color: #3a2f2f;
+    }
+
+    .generate-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .generate-btn:hover { background: var(--red-soft); }
+    .generate-btn:active { transform: scale(0.98); }
+
+    /* ─── CARD PREVIEW ─── */
+    .card-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .card-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* THE CARD */
+    #fan-card {
+      width: var(--card-w);
+      height: var(--card-h);
+      max-width: 92vw;
+      background: var(--void);
+      border: 1px solid #2a1a1a;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px;
+      cursor: default;
+      box-shadow: 0 0 80px #c8272d22;
+    }
+
+    /* Decorative background elements */
+    #fan-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 20%, #c8272d18 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 80%, #d4a84012 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .card-grain {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* Top accent bar */
+    .card-top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--red), var(--gold), transparent);
+    }
+
+    /* ZION huge bg text */
+    .card-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(100px, 30vw, 180px);
+      font-weight: 300;
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke: 1px #c8272d18;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+
+    /* Artist block top-right */
+    .card-artists {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      text-align: right;
+    }
+    .card-artists .song-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--bone);
+      line-height: 1;
+    }
+    .card-artists .featuring {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 4px;
+    }
+    .card-artists .names {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Red diamond badge top-left */
+    .card-badge {
+      position: absolute;
+      top: 28px;
+      left: 28px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      border-radius: 2px;
+      transform: rotate(45deg);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .badge-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* ── BOTTOM CONTENT ── */
+    .card-bottom {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Fan name */
+    .card-fan-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 6vw, 2.2rem);
+      font-weight: 800;
+      color: var(--bone);
+      line-height: 1.1;
+      margin-bottom: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Fan message */
+    .card-fan-message {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 20px;
+      max-height: 48px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    /* Divider */
+    .card-divider {
+      height: 1px;
+      background: linear-gradient(90deg, var(--red), transparent);
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    /* Footer row */
+    .card-footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .card-hashtags {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .card-hashtags span {
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      color: var(--red-soft);
+      opacity: 0.8;
+    }
+    .card-meta {
+      text-align: right;
+    }
+    .card-builder {
+      font-size: 0.58rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .card-builder strong {
+      color: var(--gold);
+    }
+    .card-superfan {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+
+    /* ─── STREAM LINKS ─── */
+    .stream-section {
+      width: 100%;
+      max-width: var(--card-w);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .stream-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .stream-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .stream-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border: 1px solid #2a1f1f;
+      border-radius: 6px;
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--bone);
+      transition: all 0.2s;
+      background: #0f0d0f;
+      flex: 1;
+      justify-content: center;
+      min-width: 100px;
+    }
+    .stream-link:hover { border-color: var(--gold); color: var(--gold); }
+    .stream-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* ─── SHARE AREA ─── */
+    .share-area {
+      width: 100%;
+      max-width: var(--card-w);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .share-copy-box {
+      background: #0f0d0f;
+      border: 1px solid #2a1f1f;
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.6;
+      word-break: break-word;
+    }
+    .share-copy-box strong {
+      color: var(--red-soft);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .share-btn {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid #2a1f1f;
+      background: transparent;
+      color: var(--bone);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+    .share-btn:hover { border-color: var(--red); color: var(--red); }
+    .share-btn.primary {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+    }
+    .share-btn.primary:hover { background: var(--red-soft); border-color: var(--red-soft); }
+    .share-btn.copied { border-color: var(--gold); color: var(--gold); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: rotate(45deg) scale(1); }
+      50% { opacity: 0.5; transform: rotate(45deg) scale(0.8); }
+    }
+
+    /* mobile */
+    @media (max-width: 520px) {
+      #fan-card { padding: 20px; }
+      .card-artists .song-title { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <h1>ZION <span>❤</span></h1>
+    <p>Teni × Olamide Baddo · Fan Card Generator</p>
+  </div>
+
+  <div class="form-wrap">
+    <div>
+      <label>Your Name / Handle</label>
+      <input type="text" id="input-name" placeholder="e.g. Amaka or @amaka_vibes" maxlength="30" />
+    </div>
+    <div>
+      <label>Your Message (optional)</label>
+      <textarea id="input-message" placeholder="Why does Zion hit different for you?"></textarea>
+    </div>
+    <button class="generate-btn" onclick="generateCard()">Generate My Fan Card →</button>
+  </div>
+
+  <!-- CARD PREVIEW -->
+  <div class="card-section" id="card-section">
+
+    <div id="fan-card">
+      <div class="card-grain"></div>
+      <div class="card-top-bar"></div>
+      <div class="card-bg-text">ZION</div>
+
+      <div class="card-badge">
+        <div class="badge-dot"></div>
+        <span class="badge-label">Super Fan</span>
+      </div>
+
+      <div class="card-artists">
+        <div class="song-title">Zion</div>
+        <div class="featuring">featuring</div>
+        <div class="names">Teni × Olamide Baddo</div>
+      </div>
+
+      <div class="card-bottom">
+        <div class="card-fan-name" id="card-name">YOUR NAME</div>
+        <div class="card-fan-message" id="card-message">This song is a whole sanctuary 🔥</div>
+        <div class="card-divider"></div>
+        <div class="card-footer">
+          <div class="card-hashtags">
+            <span>#ZionByTeni</span>
+            <span>#TeniXOlamide</span>
+            <span>#ZionSuperFan</span>
+          </div>
+          <div class="card-meta">
+            <div class="card-superfan">Teni Super Fan Club</div>
+            <div class="card-builder">Built by <strong>@mojeebeth</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stream Links -->
+    <div class="stream-section" id="stream-section" style="display:none;">
+      <div class="stream-label">Stream Zion Now</div>
+      <div class="stream-links">
+        <a class="stream-link" href="https://open.spotify.com/search/Zion%20Teni%20Olamide" target="_blank" rel="noopener"
+           onclick="trackEvent('stream_spotify')">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          Spotify
+        </a>
+        <a class="stream-link" href="https://music.apple.com/ng/album/zion-single/1894906613" target="_blank" rel="noopener"
+           onclick="trackEvent('stream_apple')">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.496 10.496 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026C4.786.07 4.043.15 3.34.428 2.004.958 1.04 1.88.475 3.208c-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.772.145 1.539.46 2.256.76 1.653 2.04 2.655 3.83 3.027.43.09.87.128 1.308.147.35.013.7.018 1.05.018h11.219c.39 0 .777-.015 1.165-.046.735-.06 1.45-.207 2.1-.535 1.52-.77 2.42-1.987 2.76-3.66.1-.49.145-.99.158-1.493.005-.16.01-.32.01-.48V6.504c-.002-.127-.006-.25-.012-.38zM12.002 3.8a8.197 8.197 0 110 16.394 8.197 8.197 0 010-16.394zm0 2.67a5.527 5.527 0 100 11.054 5.527 5.527 0 000-11.054zm0 2.67a2.857 2.857 0 110 5.714 2.857 2.857 0 010-5.714z"/></svg>
+          Apple Music
+        </a>
+        <a class="stream-link" href="https://www.audiomack.com/search?q=Teni+Zion+Olamide" target="_blank" rel="noopener"
+           onclick="trackEvent('stream_audiomack')">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.5 17.25V6.75l7.5 5.25-7.5 5.25z"/></svg>
+          Audiomack
+        </a>
+        <a class="stream-link" href="https://www.youtube.com/watch?v=w-Bbuvgeb20" target="_blank" rel="noopener"
+           onclick="trackEvent('stream_youtube')">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          YouTube
+        </a>
+      </div>
+    </div>
+
+    <!-- Share copy -->
+    <div class="share-area" id="share-area">
+      <div class="share-copy-box" id="share-text-box">
+        Loading share text...
+      </div>
+      <div class="btn-row">
+        <button class="share-btn" id="copy-btn" onclick="copyText()">Copy Text</button>
+        <button class="share-btn primary" onclick="tweetCard()">Post on X →</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentName = '';
+    let currentMessage = '';
+
+    // ─── UMAMI EVENT TRACKER ───
+    // Fires custom events to Umami when the script is active.
+    // No-op until you paste your Umami script tag above.
+    function trackEvent(eventName) {
+      if (typeof umami !== 'undefined') {
+        umami.track(eventName);
+      }
+    }
+
+    function generateCard() {
+      const name = document.getElementById('input-name').value.trim() || 'A True Believer';
+      const message = document.getElementById('input-message').value.trim() || 'Zion hits different every time 🙏';
+
+      currentName = name;
+      currentMessage = message;
+
+      trackEvent('generate_card');
+
+      document.getElementById('card-name').textContent = name;
+      document.getElementById('card-message').textContent = message;
+
+      // Show stream links
+      document.getElementById('stream-section').style.display = 'flex';
+      document.getElementById('stream-section').style.flexDirection = 'column';
+
+      // Update share text
+      const shareText = buildShareText(name, message);
+      document.getElementById('share-text-box').innerHTML = shareText.replace(/\n/g, '<br>');
+
+      // Show card
+      const section = document.getElementById('card-section');
+      section.classList.add('visible');
+      section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function buildShareText(name, message) {
+      const lines = [
+        `🎵 Zion is a whole sanctuary.`,
+        ``,
+        `${message}`,
+        ``,
+        `— ${name}`,
+        ``,
+        `#ZionByTeni #TeniXOlamide #ZionSuperFan`,
+        ``,
+        `🎧 Stream: https://vyd.co/TeniZion`,
+        ``,
+        `Fan card by @mojeebeth · @TeniEntertainer × @olamide_YBNL`
+      ];
+      return lines.join('\n');
+    }
+
+    function copyText() {
+      const name = currentName || 'A True Believer';
+      const message = currentMessage || 'Zion hits different every time 🙏';
+      const text = buildShareText(name, message);
+
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = 'Copied ✓';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy Text';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    function tweetCard() {
+      const name = currentName || 'A True Believer';
+      const message = currentMessage || 'Zion hits different every time 🙏';
+
+      const tweet = `🎵 ${message}\n\n— ${name}\n\n#ZionByTeni #TeniXOlamide #ZionSuperFan\n\n🎧 Stream: https://vyd.co/TeniZion\n\nFan card by @mojeebeth · @TeniEntertainer × @olamide_YBNL`;
+
+      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
+      trackEvent('tweet_card');
+      window.open(url, '_blank');
+    }
+
+    // Auto-preview on load with placeholder
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('card-section').style.opacity = '0.4';
+        document.getElementById('card-section').style.transform = 'translateY(0)';
+      }, 300);
+    });
+  </script>
+</body>
+</html>
