@@ -121,8 +121,8 @@
 
     #fan-card {
       width: var(--card-w);
-      height: var(--card-h);
       max-width: 92vw;
+      min-height: 420px;
       background: var(--void);
       border: 1px solid #2a1a1a;
       border-radius: 12px;
@@ -130,8 +130,8 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 32px;
+      justify-content: space-between;
+      padding: 80px 32px 32px;
       cursor: default;
       box-shadow: 0 0 80px #c8272d22;
     }
@@ -161,9 +161,9 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -60%);
+      transform: translate(-50%, -50%);
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(100px, 30vw, 180px);
+      font-size: clamp(80px, 25vw, 150px);
       font-weight: 300;
       font-style: italic;
       color: transparent;
@@ -219,27 +219,30 @@
     .card-bottom { position: relative; z-index: 2; }
     .card-fan-name {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(1.6rem, 6vw, 2.2rem);
+      font-size: clamp(1.4rem, 5vw, 2rem);
       font-weight: 800;
       color: var(--bone);
-      line-height: 1.1;
-      margin-bottom: 6px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .card-fan-message {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.5;
-      margin-bottom: 20px;
-      max-height: 48px;
+      line-height: 1.15;
+      margin-bottom: 8px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
+      word-break: break-word;
+    }
+    .card-fan-message {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      word-break: break-word;
+    }
     }
     .card-divider {
       height: 1px;
